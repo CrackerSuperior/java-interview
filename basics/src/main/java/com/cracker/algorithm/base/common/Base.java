@@ -1,4 +1,4 @@
-package com.cracker.algorithm.base;
+package com.cracker.algorithm.base.common;
 
 import java.util.Spliterator;
 import java.util.Spliterators;
