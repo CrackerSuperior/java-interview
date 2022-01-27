@@ -30,11 +30,12 @@ public abstract class BaseStruct<I> implements Base<I> {
     
     public void linkFirst(final I item) {
         if (isEmpty()) {
-             last = first;
+            first = getNode(item);
+            last = first;
         }
         Node<I> oldFirst = first;
         first = getNode(item);
-        oldFirst.next = first;
+        first.next = oldFirst;
         number++;
     }
     
