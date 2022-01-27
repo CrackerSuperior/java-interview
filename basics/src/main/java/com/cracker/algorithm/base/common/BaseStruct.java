@@ -1,6 +1,4 @@
-package com.cracker.algorithm.base.common.impl;
-
-import com.cracker.algorithm.base.common.Base;
+package com.cracker.algorithm.base.common;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -27,6 +25,16 @@ public abstract class BaseStruct<I> implements Base<I> {
         } else {
             oldLast.next = last;
         }
+        number++;
+    }
+    
+    public void linkFirst(final I item) {
+        if (isEmpty()) {
+             last = first;
+        }
+        Node<I> oldFirst = first;
+        first = getNode(item);
+        oldFirst.next = first;
         number++;
     }
     

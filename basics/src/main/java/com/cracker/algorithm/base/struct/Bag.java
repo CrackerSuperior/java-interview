@@ -1,6 +1,6 @@
 package com.cracker.algorithm.base.struct;
 
-import com.cracker.algorithm.base.common.impl.BaseStruct;
+import com.cracker.algorithm.base.common.BaseStruct;
 
 public abstract class Bag<I> extends BaseStruct<I> {
     
@@ -8,6 +8,7 @@ public abstract class Bag<I> extends BaseStruct<I> {
         super();
     }
     
+    @Override
     public I removeFirst() {
         throw new UnsupportedOperationException();
     }
