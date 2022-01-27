@@ -16,9 +16,7 @@ public class BagTest {
         bag.add(5);
         System.out.println(bag.size());
         System.out.println(bag.isEmpty());
-        for(Integer i : bag) {
-            System.out.println(i);
-        }
+        bag.stream().forEach(System.out::println);
     }
     
     @Test

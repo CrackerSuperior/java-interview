@@ -45,7 +45,7 @@ public class StackTest {
                         v = v / vals.pop();
                         break;
                     default :
-                        throw new RuntimeException("未知字符");
+                        throw new RuntimeException("未知字符: " + each);
                 }
                 vals.push(v);
                 if (Objects.equals(ops.peek(), "(")) {
