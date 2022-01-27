@@ -6,6 +6,7 @@ public class FixedCapacityStack<I> extends Stack<I> {
     
     private int number;
     
+    @SuppressWarnings("unchecked")
     public FixedCapacityStack(int cap) {
         Object[] objects = new Object[cap];
         items = (I[]) objects;
