@@ -1,6 +1,6 @@
 package base;
 
-import com.cracker.algorithm.base.struct.impl.BaseBag;
+import com.cracker.algorithm.base.struct.bag.BaseBag;
 import com.cracker.algorithm.imports.StdOut;
 import org.junit.Test;
 

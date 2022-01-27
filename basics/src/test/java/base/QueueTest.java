@@ -1,6 +1,6 @@
 package base;
 
-import com.cracker.algorithm.base.struct.impl.BaseQueue;
+import com.cracker.algorithm.base.struct.queue.BaseQueue;
 import org.junit.Test;
 
 import java.util.Arrays;

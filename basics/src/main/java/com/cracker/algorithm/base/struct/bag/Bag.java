@@ -1,4 +1,4 @@
-package com.cracker.algorithm.base.struct;
+package com.cracker.algorithm.base.struct.bag;
 
 import com.cracker.algorithm.base.common.BaseStruct;
 

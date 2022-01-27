@@ -1,6 +1,4 @@
-package com.cracker.algorithm.base.struct.impl;
-
-import com.cracker.algorithm.base.struct.Queue;
+package com.cracker.algorithm.base.struct.queue;
 
 import java.util.NoSuchElementException;
 

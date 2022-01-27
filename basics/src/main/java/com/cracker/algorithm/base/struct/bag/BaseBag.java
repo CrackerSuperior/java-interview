@@ -1,6 +1,4 @@
-package com.cracker.algorithm.base.struct.impl;
-
-import com.cracker.algorithm.base.struct.Bag;
+package com.cracker.algorithm.base.struct.bag;
 
 public class BaseBag<I> extends Bag<I> {
     

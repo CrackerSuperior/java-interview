@@ -1,8 +1,12 @@
 package base;
 
-import com.cracker.algorithm.base.struct.impl.BaseStack;
+import com.cracker.algorithm.base.struct.stack.BaseStack;
+import com.cracker.algorithm.base.struct.stack.FixedCapacityStack;
+import com.cracker.algorithm.imports.StdOut;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class StackTest {
@@ -56,5 +60,21 @@ public class StackTest {
             default:
                 vals.push(Double.parseDouble(each));
         }
+    }
+    
+    @Test
+    public void stackTest2() {
+        FixedCapacityStack<String> stack = new FixedCapacityStack<>(100);
+        String[] strings = {"to", "be", "or", "not", "to", "-", "be", "-", "-", "that","-", "-", "-","is"};
+        List<String> asList = Arrays.asList(strings);
+        
+        asList.forEach(each -> {
+            if (!each.equals("-")) {
+                stack.push(each);
+            } else if (!stack.isEmpty()) {
+                StdOut.print(stack.pop() + " ");
+            }
+        });
+        StdOut.println("(" + stack.size() + " left on stack)");
     }
 }
