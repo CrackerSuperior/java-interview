@@ -8,11 +8,6 @@ public abstract class Bag<I> extends BaseStruct<I> {
         super();
     }
     
-    @Override
-    public I removeFirst() {
-        throw new UnsupportedOperationException();
-    }
-    
     /**
      * Add an item to the bag.
      * @param item item

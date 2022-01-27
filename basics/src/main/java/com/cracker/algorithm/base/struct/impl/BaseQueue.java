@@ -2,6 +2,8 @@ package com.cracker.algorithm.base.struct.impl;
 
 import com.cracker.algorithm.base.struct.Queue;
 
+import java.util.NoSuchElementException;
+
 public class BaseQueue<I> extends Queue<I> {
     
     public BaseQueue() {
@@ -30,5 +32,13 @@ public class BaseQueue<I> extends Queue<I> {
         }
         this.stream().forEach(each -> str.append(each).append(", "));
         return str.substring(0, str.length() - 2);
+    }
+    
+    @Override
+    public I removeFirst() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Queue underflow");
+        }
+        return super.removeFirst();
     }
 }

@@ -2,20 +2,10 @@ package com.cracker.algorithm.base.struct;
 
 import com.cracker.algorithm.base.common.BaseStruct;
 
-import java.util.NoSuchElementException;
-
 public abstract class Queue<I> extends BaseStruct<I> {
     
     protected Queue() {
         super();
-    }
-    
-    @Override
-    public I removeFirst() {
-        if (isEmpty()) {
-            throw new NoSuchElementException("Queue underflow");
-        }
-        return super.removeFirst();
     }
     
     /**

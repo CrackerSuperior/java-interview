@@ -17,7 +17,7 @@ public abstract class BaseStruct<I> implements Base<I> {
         number = 0;
     }
     
-    public void linkLast(final I item) {
+    protected void linkLast(final I item) {
         Node<I> oldLast = last;
         last = getNode(item);
         if (isEmpty()) {
@@ -28,7 +28,7 @@ public abstract class BaseStruct<I> implements Base<I> {
         number++;
     }
     
-    public void linkFirst(final I item) {
+    protected void linkFirst(final I item) {
         if (isEmpty()) {
             first = getNode(item);
             last = first;
@@ -39,7 +39,7 @@ public abstract class BaseStruct<I> implements Base<I> {
         number++;
     }
     
-    public I removeFirst() {
+    protected I removeFirst() {
         if (isEmpty()) {
             throw new NoSuchElementException("Struct underflow");
         }
@@ -52,15 +52,15 @@ public abstract class BaseStruct<I> implements Base<I> {
         return item;
     }
     
-    public Node<I> getFirst() {
+    protected Node<I> getFirst() {
         return first;
     }
     
-    public I getFirstItem() {
+    protected I getFirstItem() {
         return getItem(getFirst());
     }
     
-    public I getItem(final Node<I> node) {
+    protected I getItem(final Node<I> node) {
         return node.item;
     }
     

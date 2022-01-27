@@ -12,4 +12,9 @@ public class BaseBag<I> extends Bag<I> {
     public void add(final I item) {
         linkLast(item);
     }
+    
+    @Override
+    public I removeFirst() {
+        throw new UnsupportedOperationException();
+    }
 }
