@@ -1,6 +1,8 @@
 package com.cracker.algorithm.base.struct.stack;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class FixedCapacityStack<I> extends Stack<I> {
     
@@ -53,5 +55,33 @@ public class FixedCapacityStack<I> extends Stack<I> {
         final int[] i = {0};
         Arrays.stream(items).limit(number).forEach(each -> temp[i[0]++] = each);
         items = temp;
-    } 
+    }
+    
+    @Override
+    public Iterator<I> iterator() {
+        return new ReverseArrayIterator();
+    }
+    
+    private class ReverseArrayIterator implements Iterator<I> {
+    
+        private int n = number;
+        
+        @Override
+        public boolean hasNext() {
+            return n > 0;
+        }
+    
+        @Override
+        public I next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            return items[--n];
+        }
+    
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+    }
 }

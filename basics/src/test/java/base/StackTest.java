@@ -29,6 +29,7 @@ public class StackTest {
         String str = "( 1 + ( ( 2 + 3 ) * ( 4 * 5 ) ) )";
         System.out.println(str.trim());
         str.replace(" ","").chars().mapToObj(each -> String.valueOf((char)each)).forEach(each -> operation(ops, vals, each));
+        vals.stream().forEach(System.out::println);
         System.out.println(vals.pop());
     }
     
