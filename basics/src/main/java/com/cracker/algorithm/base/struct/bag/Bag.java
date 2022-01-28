@@ -12,5 +12,5 @@ public abstract class Bag<I> extends BaseStruct<I> {
      * Add an item to the bag.
      * @param item item
      */
-    protected abstract void add(I item);
+    public abstract void add(I item);
 }

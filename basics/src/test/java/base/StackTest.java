@@ -2,6 +2,7 @@ package base;
 
 import com.cracker.algorithm.base.struct.stack.BaseStack;
 import com.cracker.algorithm.base.struct.stack.FixedCapacityStack;
+import com.cracker.algorithm.base.struct.stack.Stack;
 import com.cracker.algorithm.imports.StdOut;
 import org.junit.Test;
 
@@ -13,17 +14,25 @@ public class StackTest {
     
     @Test
     public void stackTest() {
-    
         BaseStack<String> ops = new BaseStack<>();
         BaseStack<Double> vals = new BaseStack<>();
         String str = "( 1 + ( ( 2 + 3 ) * ( 4 * 5 ) ) )";
         System.out.println(str.trim());
-        //str.replace(" ","").chars().mapToObj(each -> String.valueOf((char)each)).forEach(System.out::print);
         str.replace(" ","").chars().mapToObj(each -> String.valueOf((char)each)).forEach(each -> operation(ops, vals, each));
         System.out.println(vals.pop());
     }
     
-    private void operation(final BaseStack<String> ops, final BaseStack<Double> vals, final String each) {
+    @Test
+    public void stackTest3() {
+        FixedCapacityStack<String> ops = new FixedCapacityStack<>(1);
+        FixedCapacityStack<Double> vals = new FixedCapacityStack<>(1);
+        String str = "( 1 + ( ( 2 + 3 ) * ( 4 * 5 ) ) )";
+        System.out.println(str.trim());
+        str.replace(" ","").chars().mapToObj(each -> String.valueOf((char)each)).forEach(each -> operation(ops, vals, each));
+        System.out.println(vals.pop());
+    }
+    
+    private void operation(final Stack<String> ops, final Stack<Double> vals, final String each) {
         switch (each) {
             case "(":
             case "+":
@@ -49,7 +58,7 @@ public class StackTest {
                         v = v / vals.pop();
                         break;
                     default :
-                        throw new RuntimeException("未知字符: " + each);
+                        throw new RuntimeException("未知字符: " + op);
                 }
                 vals.push(v);
                 if (Objects.equals(ops.peek(), "(")) {
@@ -64,7 +73,7 @@ public class StackTest {
     
     @Test
     public void stackTest2() {
-        FixedCapacityStack<String> stack = new FixedCapacityStack<>(100);
+        FixedCapacityStack<String> stack = new FixedCapacityStack<>(1);
         String[] strings = {"to", "be", "or", "not", "to", "-", "be", "-", "-", "that","-", "-", "-","is"};
         List<String> asList = Arrays.asList(strings);
         
