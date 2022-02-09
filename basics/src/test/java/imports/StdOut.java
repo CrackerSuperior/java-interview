@@ -6,7 +6,7 @@
  *  Writes data of various types to standard output.
  *
  ******************************************************************************/
-package com.cracker.algorithm.imports;
+package imports;
 
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;

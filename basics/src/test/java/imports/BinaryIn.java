@@ -8,7 +8,7 @@
  *  % java BinaryIn https://introcs.cs.princeton.edu/java/cover.png output.png
  *
  ******************************************************************************/
-package com.cracker.algorithm.imports;
+package imports;
 
 import java.io.BufferedInputStream;
 import java.io.File;

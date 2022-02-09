@@ -10,7 +10,7 @@
  *  The bytes written are not aligned.
  *
  ******************************************************************************/
-package com.cracker.algorithm.imports;
+package imports;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;

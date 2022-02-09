@@ -6,7 +6,7 @@
  *  Reads in data of various types from standard input.
  *
  ******************************************************************************/
-package com.cracker.algorithm.imports;
+package imports;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
