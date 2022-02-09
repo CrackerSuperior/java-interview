@@ -1,4 +1,4 @@
-package com.cracker.algorithm.utils;
+package com.cracker.utils;
 
 public class Counter {
     
@@ -10,11 +10,11 @@ public class Counter {
         this.id = id;
     }
     
-    void increment() {
+    public void increment() {
         number++;
     }
     
-    int tally() {
+    public int tally() {
         return this.number;
     }
     

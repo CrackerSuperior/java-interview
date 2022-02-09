@@ -1,10 +1,10 @@
-package com.cracker.algorithm.utils;
+package com.cracker.utils;
 
-import com.cracker.algorithm.imports.StdOut;
-import com.cracker.algorithm.imports.StdRandom;
+import imports.StdOut;
+import imports.StdRandom;
 import org.junit.Test;
 
-public final class CounterTest {
+public class CounterTest {
     
     /**
      * Junit 不能使用手动输入，会一直转圈执行不了代码.
