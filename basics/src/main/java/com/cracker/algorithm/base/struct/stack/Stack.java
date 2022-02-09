@@ -1,6 +1,6 @@
 package com.cracker.algorithm.base.struct.stack;
 
-import com.cracker.algorithm.base.common.BaseStruct;
+import com.cracker.algorithm.base.core.BaseStruct;
 
 public abstract class Stack<I> extends BaseStruct<I> {
     

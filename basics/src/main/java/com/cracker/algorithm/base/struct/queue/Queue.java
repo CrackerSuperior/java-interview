@@ -1,6 +1,6 @@
 package com.cracker.algorithm.base.struct.queue;
 
-import com.cracker.algorithm.base.common.BaseStruct;
+import com.cracker.algorithm.base.core.BaseStruct;
 
 public abstract class Queue<I> extends BaseStruct<I> {
     

@@ -1,7 +1,7 @@
-package base;
+package com.cracker.algorithm.base;
 
 import com.cracker.algorithm.base.struct.bag.BaseBag;
-import com.cracker.algorithm.imports.StdOut;
+import imports.StdOut;
 import org.junit.Test;
 
 public class BagTest {

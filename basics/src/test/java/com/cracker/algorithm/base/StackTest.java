@@ -1,9 +1,9 @@
-package base;
+package com.cracker.algorithm.base;
 
 import com.cracker.algorithm.base.struct.stack.BaseStack;
 import com.cracker.algorithm.base.struct.stack.FixedCapacityStack;
 import com.cracker.algorithm.base.struct.stack.Stack;
-import com.cracker.algorithm.imports.StdOut;
+import imports.StdOut;
 import org.junit.Test;
 
 import java.util.Arrays;

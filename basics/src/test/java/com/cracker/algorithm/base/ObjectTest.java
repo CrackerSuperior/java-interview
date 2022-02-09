@@ -1,4 +1,4 @@
-package base;
+package com.cracker.algorithm.base;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

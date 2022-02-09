@@ -1,4 +1,4 @@
-package base;
+package com.cracker.algorithm.base;
 
 import com.cracker.algorithm.base.struct.queue.BaseQueue;
 import org.junit.Test;
