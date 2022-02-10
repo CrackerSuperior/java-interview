@@ -23,10 +23,10 @@ public class QueueTest {
         int size = queue.size();
         int[] arr = new int[size];
         final int[] i = {0};
-        System.out.println(queue);
+        System.out.println("queue1 = " + queue);
         queue.stream().forEach(each -> arr[i[0]++] = queue.dequeue());
         Arrays.stream(arr).forEach(System.out::println);
-        System.out.println(queue.size());
-        System.out.println(queue);
+        System.out.println("size = " + queue.size());
+        System.out.println("queue2 = " + queue);
     }
 }

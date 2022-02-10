@@ -36,7 +36,7 @@ public class FixedCapacityStack<I> extends Stack<I> {
     
     @Override
     public I peek() {
-        return items[number-1];
+        return items[number - 1];
     }
     
     @Override

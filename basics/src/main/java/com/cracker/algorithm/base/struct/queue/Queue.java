@@ -4,10 +4,6 @@ import com.cracker.algorithm.base.core.BaseStruct;
 
 public abstract class Queue<I> extends BaseStruct<I> {
     
-    protected Queue() {
-        super();
-    }
-    
     /**
      * Add an item to the queue.
      * @param item item
