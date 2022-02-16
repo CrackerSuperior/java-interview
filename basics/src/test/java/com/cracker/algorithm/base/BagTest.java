@@ -5,7 +5,7 @@ import imports.StdOut;
 import org.junit.Test;
 
 public class BagTest {
-    //LinkedList
+
     @Test
     public void baseBagTest() {
         BaseBag<Integer> bag = new BaseBag<>();

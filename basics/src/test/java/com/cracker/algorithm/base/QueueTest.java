@@ -1,6 +1,7 @@
 package com.cracker.algorithm.base;
 
 import com.cracker.algorithm.base.struct.queue.BaseQueue;
+import com.cracker.algorithm.base.struct.queue.CircularQueue;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -28,5 +29,38 @@ public class QueueTest {
         Arrays.stream(arr).forEach(System.out::println);
         System.out.println("size = " + queue.size());
         System.out.println("queue2 = " + queue);
+    }
+
+    @Test
+    public void circularQueue() {
+        CircularQueue<Integer> circularQueue = new CircularQueue<>(5);
+
+        circularQueue.enqueue(1);
+        circularQueue.enqueue(2);
+        circularQueue.enqueue(3);
+        circularQueue.enqueue(4);
+        System.out.println(circularQueue.isFull());
+        circularQueue.stream().forEach(System.out::print);
+        System.out.println();
+        circularQueue.enqueue(5);
+        System.out.println(circularQueue.isFull());
+        circularQueue.stream().forEach(System.out::print);
+        System.out.println();
+        circularQueue.enqueue(6);
+        System.out.println(circularQueue.isFull());
+        circularQueue.stream().forEach(System.out::print);
+        System.out.println();
+        System.out.println(circularQueue.front());
+        System.out.println(circularQueue.rear());
+        circularQueue.dequeue();
+        System.out.println(circularQueue.isFull());
+        circularQueue.stream().forEach(System.out::print);
+        System.out.println();
+        System.out.println(circularQueue.front());
+        System.out.println(circularQueue.rear());
+        circularQueue.clear();
+        System.out.println(circularQueue.isEmpty());
+        System.out.println(circularQueue.isFull());
+        circularQueue.stream().forEach(System.out::println);
     }
 }

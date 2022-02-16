@@ -36,8 +36,8 @@ public class LinkedTest {
     
         System.out.println("removeLast = " + linked.removeLast());
         linked.stream().forEach(System.out::println);
-        
-        linked.set(linked.size() - 1, 100);
+
+        System.out.println(linked.set(linked.size() - 1, 100));
         linked.stream().forEach(System.out::println);
     
     }

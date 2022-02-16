@@ -10,7 +10,7 @@ public abstract class BaseStruct<I> implements Base<I> {
     private Node<I> last;
     
     private int size;
-    
+
     protected BaseStruct() {
         first = null;
         last = null;
@@ -31,16 +31,19 @@ public abstract class BaseStruct<I> implements Base<I> {
     protected void linkIndex(final int index, final I item) {
         if (0 == index) {
             linkFirst(item);
+        } else if (size == index) {
+            linkLast(item);
+        } else {
+            Node<I> newNode = getNode(item);
+            Node<I> oldFirst = first;
+            Node<I> oldNode = node(index);
+            while (oldFirst.next == oldNode) {
+                oldFirst = oldFirst.next;
+            }
+            oldFirst.next = newNode;
+            newNode.next = oldNode;
+            size++;
         }
-        Node<I> newNode = getNode(item);
-        Node<I> oldFirst = first;
-        Node<I> oldNode = node(index);
-        while (oldFirst.next == oldNode) {
-            oldFirst = oldFirst.next;
-        }
-        oldFirst.next = newNode;
-        newNode.next = oldNode;
-        size++;
     }
     
     protected void linkLast(final I item) {
@@ -55,7 +58,7 @@ public abstract class BaseStruct<I> implements Base<I> {
     }
     
     protected I removeFirst() {
-        isEmptyCheck(isEmpty(), new NoSuchElementException("Struct underflow"));
+        isEmptyCheck(isEmpty());
         final I item = first.item;
         first = first.next;
         size--;
@@ -83,7 +86,7 @@ public abstract class BaseStruct<I> implements Base<I> {
      * @return the item that was previously in the specified position
      */
     public I remove(final int index) {
-        I result = null;
+        I result;
         if (0 == index) {
             result = removeFirst();
         } else if (size == index) {
@@ -102,7 +105,7 @@ public abstract class BaseStruct<I> implements Base<I> {
     }
     
     public I removeLast() {
-        isEmptyCheck(isEmpty(), new NoSuchElementException("Struct underflow"));
+        isEmptyCheck(isEmpty());
         final I item = last.item;
         Node<I> oldFirst = first;
         if (last == first) {
@@ -118,9 +121,9 @@ public abstract class BaseStruct<I> implements Base<I> {
         return item;
     }
     
-    private void isEmptyCheck(final boolean empty, final NoSuchElementException e) {
+    private void isEmptyCheck(final boolean empty) {
         if (empty) {
-            throw e;
+            throw new NoSuchElementException("Struct underflow");
         }
     }
     
@@ -129,6 +132,7 @@ public abstract class BaseStruct<I> implements Base<I> {
      * 
      * <p>When this call returns, the list will be empty.
      */
+    @SuppressWarnings("all")
     public void clear() {
         for (Node<I> x = first; x != null;) {
             Node<I> next = x.next;
@@ -161,10 +165,12 @@ public abstract class BaseStruct<I> implements Base<I> {
     }
     
     protected I getFirstItem() {
+        isEmptyCheck(isEmpty());
         return getItem(getFirst());
     }
     
     protected I getLastItem() {
+        isEmptyCheck(isEmpty());
         return getItem(getLast());
     }
     
