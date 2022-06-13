@@ -23,6 +23,14 @@ public class FixedCapacityStack<I> extends Stack<I> {
         }
         items[number++] = item;
     }
+
+    /**
+     * Check if the stack is full.
+     * @return Check if the stack is full
+     */
+    public boolean isFull() {
+        return number == items.length;
+    }
     
     @Override
     public I pop() {
