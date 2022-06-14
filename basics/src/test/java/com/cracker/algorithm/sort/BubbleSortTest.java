@@ -15,5 +15,10 @@ public class BubbleSortTest {
         sort.sort(data);
         assert sort.isSorted(data);
         Arrays.stream(data).forEach(System.out::print);
+        System.out.println();
+        BubbleSort<Integer> sort1 = new BubbleSort<>(true);
+        sort1.sort(data);
+        assert sort1.isSorted(data);
+        Arrays.stream(data).forEach(System.out::print);
     }
 }
