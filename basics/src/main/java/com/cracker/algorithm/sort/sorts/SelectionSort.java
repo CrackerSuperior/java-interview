@@ -1,0 +1,32 @@
+package com.cracker.algorithm.sort.sorts;
+
+import com.cracker.algorithm.sort.core.Sort;
+
+public class SelectionSort<I> extends Sort<I> {
+
+    public SelectionSort() {
+    }
+
+    public SelectionSort(final boolean reverse) {
+        super(reverse);
+    }
+
+    @Override
+    public void sort(final Comparable<I>[] data) {
+        for (int i = 0; i < data.length; i++) {
+            int mark = i;
+            for (int j = i + 1; j < data.length; j++) {
+                if (isReverse()) {
+                    if (less(data[j], data[mark])) {
+                        mark = j;
+                    }
+                } else {
+                    if (!less(data[j], data[mark])) {
+                        mark = j;
+                    }
+                }
+            }
+            exch(data, i, mark);
+        }
+    }
+}
