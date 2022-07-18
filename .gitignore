@@ -1,6 +1,7 @@
 HELP.md
 ## @author cracker
 #maven ignore
+docs/**/**/.obsidian/
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
