@@ -3,34 +3,32 @@ package com.cracker.algorithm.base;
 import com.cracker.algorithm.base.struct.stack.BaseStack;
 import com.cracker.algorithm.base.struct.stack.FixedCapacityStack;
 import com.cracker.algorithm.base.struct.stack.Stack;
-import imports.StdOut;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class StackTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class StackTest {
     
     @Test
-    public void stackTest() {
+    void stackTest() {
         BaseStack<String> ops = new BaseStack<>();
         BaseStack<Double> vals = new BaseStack<>();
         String str = "( 1 + ( ( 2 + 3 ) * ( 4 * 5 ) ) )";
-        System.out.println(str.trim());
         str.replace(" ","").chars().mapToObj(each -> String.valueOf((char)each)).forEach(each -> operation(ops, vals, each));
-        System.out.println(vals.pop());
+        assertEquals(101.0, vals.pop());
     }
     
     @Test
-    public void stackTest3() {
+    void stackTest3() {
         FixedCapacityStack<String> ops = new FixedCapacityStack<>(1);
         FixedCapacityStack<Double> vals = new FixedCapacityStack<>(1);
         String str = "( 1 + ( ( 2 + 3 ) * ( 4 * 5 ) ) )";
-        System.out.println(str.trim());
         str.replace(" ","").chars().mapToObj(each -> String.valueOf((char)each)).forEach(each -> operation(ops, vals, each));
-        vals.stream().forEach(System.out::println);
-        System.out.println(vals.pop());
+        assertEquals(101.0, vals.pop());
     }
     
     private void operation(final Stack<String> ops, final Stack<Double> vals, final String each) {
@@ -42,7 +40,7 @@ public class StackTest {
             case "/":
                 ops.push(each);
                 break;
-            case ")":{
+            case ")": {
                 String op = ops.pop();
                 double v = vals.pop();
                 switch (op) {
@@ -73,18 +71,19 @@ public class StackTest {
     }
     
     @Test
-    public void stackTest2() {
+    void stackTest2() {
         FixedCapacityStack<String> stack = new FixedCapacityStack<>(1);
         String[] strings = {"to", "be", "or", "not", "to", "-", "be", "-", "-", "that","-", "-", "-","is"};
         List<String> asList = Arrays.asList(strings);
-        
+        StringBuilder builder = new StringBuilder();
         asList.forEach(each -> {
             if (!each.equals("-")) {
                 stack.push(each);
             } else if (!stack.isEmpty()) {
-                StdOut.print(stack.pop() + " ");
+                builder.append(stack.pop()).append(" ");
             }
         });
-        StdOut.println("(" + stack.size() + " left on stack)");
+        builder.append("(").append(stack.size()).append(" left on stack)");
+        assertEquals("to be not that or be (2 left on stack)", builder.toString());
     }
 }

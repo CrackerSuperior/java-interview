@@ -1,26 +1,31 @@
 package com.cracker.algorithm.base;
 
 import com.cracker.algorithm.base.struct.bag.BaseBag;
-import imports.StdOut;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class BagTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class BagTest {
 
     @Test
-    public void baseBagTest() {
+    void baseBagTest() {
         BaseBag<Integer> bag = new BaseBag<>();
         bag.add(1);
         bag.add(2);
         bag.add(3);
         bag.add(4);
         bag.add(5);
-        System.out.println(bag.size());
-        System.out.println(bag.isEmpty());
-        bag.stream().forEach(System.out::println);
+        assertEquals(5, bag.size());
+        int[] ints = {1, 2, 3, 4, 5};
+        int[] index = {0};
+        bag.stream().forEach(each -> {
+            assertEquals(ints[index[0]++], each);
+        });
+        
     }
     
     @Test
-    public void baseBagTest2() {
+    void baseBagTest2() {
         BaseBag<Double> numbers = new BaseBag<>();
         numbers.add(100d);
         numbers.add(99d);
@@ -38,7 +43,7 @@ public class BagTest {
         sum[0] = 0.0;
         numbers.stream().forEach(each -> sum[0] += (each - mean) * (each - mean));
         double sqrt = Math.sqrt(sum[0] / (numbers.size() - 1));
-        StdOut.printf("Mean: %.2f\n", mean);//100.60
-        StdOut.printf("Std dev: %.2f\n", sqrt);//10.51
+        assertEquals("100.60", String.format("%.2f", mean));
+        assertEquals("10.51", String.format("%.2f", sqrt));
     }
 }

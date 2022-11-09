@@ -2,39 +2,48 @@ package com.cracker.algorithm.sort;
 
 import com.cracker.algorithm.sort.sorts.BubbleSort;
 import com.cracker.algorithm.sort.sorts.SelectionSort;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-public class SortTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class SortTest {
 
     @Test
-    public void bubbleSortTest() {
+    void bubbleSortTest() {
         int[] data = {2, 5, 1, 3, 6, 9, 0, 8, 7, 4};
         BubbleSort<Integer> sort = new BubbleSort<>();
         Integer[] integers = Arrays.stream(data).boxed().toArray(Integer[]::new);
         sort.sort(integers);
-        assert sort.isSorted(integers);
-        Arrays.stream(integers).forEach(System.out::print);
-        System.out.println();
+        assertTrue(sort.isSorted(integers));
+        int[] ints = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int[] index = {0};
+        Arrays.stream(integers).forEach(each -> assertEquals(ints[index[0]++], each));
         BubbleSort<Integer> sort1 = new BubbleSort<>(true);
         sort1.sort(integers);
-        assert sort1.isSorted(integers);
-        Arrays.stream(integers).forEach(System.out::print);
+        assertTrue(sort1.isSorted(integers));
+        int[] ints2 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+        index[0] = 0;
+        Arrays.stream(integers).forEach(each -> assertEquals(ints2[index[0]++], each));
     }
 
     @Test
-    public void selectionSortTest() {
+    void selectionSortTest() {
         int[] data = {2, 5, 1, 3, 6, 9, 0, 8, 7, 4};
         SelectionSort<Integer> sort = new SelectionSort<>();
         Integer[] integers = Arrays.stream(data).boxed().toArray(Integer[]::new);
         sort.sort(integers);
-        assert sort.isSorted(integers);
-        Arrays.stream(integers).forEach(System.out::print);
-        System.out.println();
+        assertTrue(sort.isSorted(integers));
+        int[] ints = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int[] index = {0};
+        Arrays.stream(integers).forEach(each -> assertEquals(ints[index[0]++], each));
         SelectionSort<Integer> sort1 = new SelectionSort<>(true);
         sort1.sort(integers);
-        assert sort1.isSorted(integers);
-        Arrays.stream(integers).forEach(System.out::print);
+        int[] ints2 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+        index[0] = 0;
+        assertTrue(sort1.isSorted(integers));
+        Arrays.stream(integers).forEach(each -> assertEquals(ints2[index[0]++], each));
     }
 }

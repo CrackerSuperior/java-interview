@@ -2,14 +2,16 @@ package com.cracker.algorithm.base;
 
 import com.cracker.algorithm.base.struct.queue.BaseQueue;
 import com.cracker.algorithm.base.struct.queue.CircularQueue;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class QueueTest {
+class QueueTest {
     
     @Test
-    public void queueTest() {
+    void queueTest() {
         BaseQueue<Integer> queue = new BaseQueue<>();
         queue.enqueue(1);
         queue.enqueue(2);
@@ -18,49 +20,46 @@ public class QueueTest {
         queue.enqueue(5);
         queue.enqueue(6);
         queue.enqueue(7);
-    
-        System.out.println(queue.peek());
-    
-        int size = queue.size();
-        int[] arr = new int[size];
-        final int[] i = {0};
-        System.out.println("queue1 = " + queue);
-        queue.stream().forEach(each -> arr[i[0]++] = queue.dequeue());
-        Arrays.stream(arr).forEach(System.out::println);
-        System.out.println("size = " + queue.size());
-        System.out.println("queue2 = " + queue);
+        assertEquals(1, queue.peek());
+        int[] arr = {1, 2, 4, 3, 5, 6, 7};
+        int[] index = {0};
+        queue.stream().forEach(each -> assertEquals(arr[index[0]++], queue.dequeue()));
+        assertEquals(0,queue.size());
     }
 
     @Test
-    public void circularQueue() {
+    void circularQueue() {
         CircularQueue<Integer> circularQueue = new CircularQueue<>(5);
-
         circularQueue.enqueue(1);
         circularQueue.enqueue(2);
         circularQueue.enqueue(3);
         circularQueue.enqueue(4);
-        System.out.println(circularQueue.isFull());
-        circularQueue.stream().forEach(System.out::print);
-        System.out.println();
+        assertFalse(circularQueue.isFull());
+        int[] ints = {1, 2, 3, 4};
+        int[] index = {0};
+        circularQueue.stream().forEach(each -> assertEquals(ints[index[0]++], each));
         circularQueue.enqueue(5);
-        System.out.println(circularQueue.isFull());
-        circularQueue.stream().forEach(System.out::print);
-        System.out.println();
+        int[] ints2 = {1, 2, 3, 4, 5};
+        index[0] = 0;
+        assertTrue(circularQueue.isFull());
+        circularQueue.stream().forEach(each -> assertEquals(ints2[index[0]++], each));
         circularQueue.enqueue(6);
-        System.out.println(circularQueue.isFull());
-        circularQueue.stream().forEach(System.out::print);
+        int[] ints3 = {2, 3, 4, 5, 6};
+        index[0] = 0;
+        assertTrue(circularQueue.isFull());
+        circularQueue.stream().forEach(each -> assertEquals(ints3[index[0]++], each));
+        assertEquals(2, circularQueue.front());
+        assertEquals(6, circularQueue.rear());
+        assertEquals(2, circularQueue.dequeue());
+        assertFalse(circularQueue.isFull());
+        int[] ints4 = {3, 4, 5, 6};
+        index[0] = 0;
+        circularQueue.stream().forEach(each -> assertEquals(ints4[index[0]++], each));
         System.out.println();
-        System.out.println(circularQueue.front());
-        System.out.println(circularQueue.rear());
-        circularQueue.dequeue();
-        System.out.println(circularQueue.isFull());
-        circularQueue.stream().forEach(System.out::print);
-        System.out.println();
-        System.out.println(circularQueue.front());
-        System.out.println(circularQueue.rear());
+        assertEquals(3, circularQueue.front());
+        assertEquals(6, circularQueue.rear());
         circularQueue.clear();
-        System.out.println(circularQueue.isEmpty());
-        System.out.println(circularQueue.isFull());
-        circularQueue.stream().forEach(System.out::println);
+        assertTrue(circularQueue.isEmpty());
+        assertFalse(circularQueue.isFull());
     }
 }

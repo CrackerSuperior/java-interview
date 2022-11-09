@@ -19,6 +19,7 @@ public class BaseQueue<I> extends Queue<I> {
         return getFirstItem();
     }
 
+    @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
         if (isEmpty()) {

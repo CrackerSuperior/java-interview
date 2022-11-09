@@ -2,15 +2,15 @@ package com.cracker.utils;
 
 import imports.StdOut;
 import imports.StdRandom;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class CounterTest {
+class CounterTest {
     
     /**
      * Junit 不能使用手动输入，会一直转圈执行不了代码.
      */
     @Test
-    public void flips() {
+    void flips() {
         int time = 1000;
         Counter heads = new Counter("heads");
         Counter tails = new Counter("tails");
