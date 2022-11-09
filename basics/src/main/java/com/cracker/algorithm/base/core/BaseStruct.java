@@ -21,10 +21,11 @@ public abstract class BaseStruct<I> implements Base<I> {
         if (isEmpty()) {
             first = getNode(item);
             last = first;
+        } else {
+            Node<I> oldFirst = first;
+            first = getNode(item);
+            first.next = oldFirst;
         }
-        Node<I> oldFirst = first;
-        first = getNode(item);
-        first.next = oldFirst;
         size++;
     }
     
@@ -253,6 +254,9 @@ public abstract class BaseStruct<I> implements Base<I> {
     }
     
     protected Node<I> node(final int index) {
+        if (index > size) {
+            throw new IndexOutOfBoundsException("Index out of range: " + index);
+        }
         Node<I> oldFirst = first;
         for (int i = 0; i < index; i++) {
             oldFirst = oldFirst.next;
