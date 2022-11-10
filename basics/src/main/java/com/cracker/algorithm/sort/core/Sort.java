@@ -22,7 +22,7 @@ public abstract class Sort<I> {
 
     @SuppressWarnings("all")
     protected boolean less(final Comparable<I> x, final Comparable<I> y) {
-        return x.compareTo((I) y) > 0;
+        return reverse ? x.compareTo((I) y) < 0 : x.compareTo((I) y) > 0;
     }
 
     protected void exch(final Comparable<I>[] data, final int i, final int j) {
@@ -37,17 +37,9 @@ public abstract class Sort<I> {
      * @return check result
      */
     public boolean isSorted(final Comparable<I>[] data) {
-        if (reverse) {
-            for (int i = 1; i < data.length; i++) {
-                if (less(data[i], data[i - 1])) {
-                    return false;
-                }
-            }
-        } else {
-            for (int i = 0; i < data.length - 1; i++) {
-                if (less(data[i], data[i + 1])) {
-                    return false;
-                }
+        for (int i = 0; i < data.length - 1; i++) {
+            if (less(data[i], data[i + 1])) {
+                return false;
             }
         }
         return true;

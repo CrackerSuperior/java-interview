@@ -14,14 +14,8 @@ public class BubbleSort<I> extends Sort<I> {
     public void sort(final Comparable<I>[] data) {
         for (int i = 0; i < data.length - 1; i++) {
             for (int j = i + 1; j < data.length; j++) {
-                if (isReverse()) {
-                    if (!less(data[i], data[j])) {
-                        exch(data, i, j);
-                    }
-                } else {
-                    if (less(data[i], data[j])) {
-                        exch(data, i, j);
-                    }
+                if (less(data[i], data[j])) {
+                    exch(data, i, j);
                 }
             }
         }

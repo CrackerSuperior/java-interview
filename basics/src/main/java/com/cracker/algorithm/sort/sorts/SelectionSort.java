@@ -16,14 +16,8 @@ public class SelectionSort<I> extends Sort<I> {
         for (int i = 0; i < data.length; i++) {
             int mark = i;
             for (int j = i + 1; j < data.length; j++) {
-                if (isReverse()) {
-                    if (less(data[j], data[mark])) {
-                        mark = j;
-                    }
-                } else {
-                    if (!less(data[j], data[mark])) {
-                        mark = j;
-                    }
+                if (less(data[mark], data[j])) {
+                    mark = j;
                 }
             }
             exch(data, i, mark);
