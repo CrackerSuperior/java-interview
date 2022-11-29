@@ -10,6 +10,7 @@ public abstract class Sort<I> {
         this.reverse = reverse;
     }
 
+    @SuppressWarnings("unused")
     public boolean isReverse() {
         return reverse;
     }

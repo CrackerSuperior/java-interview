@@ -84,7 +84,7 @@ public abstract class BaseStruct<I> implements Base<I> {
      * 
      * <p>Returns the item removed from the list.
      * @param index the index of the item to be deleted
-     * @return the item that was previously in the specified position
+     * @return the item that was previous in the specified position
      */
     public I remove(final int index) {
         I result;
@@ -149,7 +149,7 @@ public abstract class BaseStruct<I> implements Base<I> {
      * Replaces the item at the specified position in this list with the specified item.
      * @param index the index of the item to be replaced
      * @param item the item to be stored at the specified location
-     * @return the item that was previously in the specified position
+     * @return the item that was previous in the specified position
      */
     public I set(final int index, final I item) {
         Node<I> node = node(index);
@@ -222,10 +222,17 @@ public abstract class BaseStruct<I> implements Base<I> {
         }
         return index;
     }
+
+    /**
+     * Reverse linked list.
+     */
+    public void reverse() {
+        //TODO: 
+    }
     
     /**
      * Is the struct empty.
-     * @return Is the struct empty
+     * @return Is the struct empty.
      */
     public boolean isEmpty() {
         return null == first;

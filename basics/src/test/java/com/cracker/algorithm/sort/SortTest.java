@@ -1,5 +1,7 @@
 package com.cracker.algorithm.sort;
 
+import com.cracker.algorithm.base.struct.linked.Linked;
+import com.cracker.algorithm.base.struct.linked.SinglyLinked;
 import com.cracker.algorithm.sort.core.Sort;
 import com.cracker.algorithm.sort.sorts.BubbleSort;
 import com.cracker.algorithm.sort.sorts.InsertionSort;
@@ -93,5 +95,32 @@ class SortTest {
         index[0] = 0;
         assertTrue(sort1.isSorted(integers));
         Arrays.stream(integers).forEach(each -> assertEquals(ints2[index[0]++], each));
+    }
+
+    /**
+     * This is question 2.1.14 of the book "Algorithm4".
+     */
+    @Test
+    void sortExperiment1() {
+        int[] data = {2, 5, 1, 3, 6, 9, 0, 8, 7, 4};
+        int first = 0;
+        int second = 1;
+        Linked<Integer> linked = new SinglyLinked<>();
+        for (int i : data) {
+            linked.add(i);
+        }
+        for (int i = 1; i < data.length; i++) {
+            for (int j = 1; j <= data.length - i; j++) {
+                if (linked.get(first) < linked.get(second)) {
+                    linked.add(linked.remove(second));
+                } else {
+                    linked.add(linked.remove(first));
+                }
+            }
+            for (int k = 1; k <= i; k++) {
+                linked.add(linked.remove(first));
+            }
+        }
+        linked.reverse();//If you want to sort from smallest to largest.
     }
 }
