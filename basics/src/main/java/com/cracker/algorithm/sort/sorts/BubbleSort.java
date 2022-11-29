@@ -15,7 +15,7 @@ public class BubbleSort<I> extends Sort<I> {
         for (int i = 0; i < data.length - 1; i++) {
             for (int j = i + 1; j < data.length; j++) {
                 if (less(data[i], data[j])) {
-                    exch(data, i, j);
+                    exchange(data, i, j);
                 }
             }
         }

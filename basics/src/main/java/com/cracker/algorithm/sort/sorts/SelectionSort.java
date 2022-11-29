@@ -4,8 +4,7 @@ import com.cracker.algorithm.sort.core.Sort;
 
 public class SelectionSort<I> extends Sort<I> {
 
-    public SelectionSort() {
-    }
+    public SelectionSort() { }
 
     public SelectionSort(final boolean reverse) {
         super(reverse);
@@ -20,7 +19,7 @@ public class SelectionSort<I> extends Sort<I> {
                     mark = j;
                 }
             }
-            exch(data, i, mark);
+            exchange(data, i, mark);
         }
     }
 }
