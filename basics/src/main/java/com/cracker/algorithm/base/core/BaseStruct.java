@@ -227,7 +227,16 @@ public abstract class BaseStruct<I> implements Base<I> {
      * Reverse linked list.
      */
     public void reverse() {
-        //TODO: 
+        Node<I> prev = first;
+        Node<I> next = prev.next;
+        prev.next = null;
+        while (next != null) {
+            Node<I> node = next.next;
+            next.next = prev;
+            prev = next;
+            next = node;
+        }
+        first = prev;
     }
     
     /**
