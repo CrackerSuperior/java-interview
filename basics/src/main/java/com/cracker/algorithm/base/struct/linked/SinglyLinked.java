@@ -35,4 +35,9 @@ public class SinglyLinked<I> extends Linked<I> {
     public boolean contains(final I item) {
         return lastIndexOf(item) != -1;
     }
+
+    @Override
+    public I remove(final I item) {
+        return remove(indexOf(item));
+    }
 }

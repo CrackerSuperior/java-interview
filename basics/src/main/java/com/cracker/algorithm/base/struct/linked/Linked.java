@@ -46,4 +46,6 @@ public abstract class Linked<I> extends BaseStruct<I> {
      * @return true if the list contains the specified item
      */
     public abstract boolean contains(I item);
+    
+    public abstract I remove(I item);
 }

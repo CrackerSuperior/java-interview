@@ -87,6 +87,7 @@ public abstract class BaseStruct<I> implements Base<I> {
      * @return the item that was previous in the specified position
      */
     public I remove(final int index) {
+        checkElementIndex(index);
         I result;
         if (0 == index) {
             result = removeFirst();
@@ -103,6 +104,20 @@ public abstract class BaseStruct<I> implements Base<I> {
             size--;
         }
         return result;
+    }
+
+    private void checkElementIndex(final int index) {
+        if (!isElementIndex(index)) {
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+        }
+    }
+
+    private boolean isElementIndex(final int index) {
+        return index >= 0 && index < size;
+    }
+
+    private String outOfBoundsMsg(final int index) {
+        return "Index: " + index + ", Size: " + size;
     }
     
     public I removeLast() {
