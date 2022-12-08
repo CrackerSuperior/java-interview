@@ -1,2 +1,3 @@
-# java-interview
-Java interview code exercises
+# 🚧 interview
+Interview code exercises
+- 🚧 Java
