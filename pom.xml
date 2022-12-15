@@ -6,7 +6,7 @@
 
     <groupId>com.cracker</groupId>
     <artifactId>interview</artifactId>
-    <version>1.0.0</version>
+    <version>0.0.0</version>
     <packaging>pom</packaging>
 
     <modules>
