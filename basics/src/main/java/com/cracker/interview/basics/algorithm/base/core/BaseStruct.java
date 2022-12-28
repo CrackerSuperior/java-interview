@@ -18,13 +18,12 @@ public abstract class BaseStruct<I> implements Base<I> {
     }
     
     protected void linkFirst(final I item) {
-        if (isEmpty()) {
-            first = getNode(item);
+        Node<I> oldFirst = first;
+        first = new Node<>(null, item, oldFirst);
+        if (oldFirst == null) {
             last = first;
         } else {
-            Node<I> oldFirst = first;
-            first = getNode(item);
-            first.next = oldFirst;
+            oldFirst.prev = first;
         }
         size++;
     }
@@ -35,22 +34,23 @@ public abstract class BaseStruct<I> implements Base<I> {
         } else if (size == index) {
             linkLast(item);
         } else {
-            Node<I> newNode = getNode(item);
-            Node<I> oldFirst = first;
             Node<I> oldNode = node(index);
-            while (oldFirst.next == oldNode) {
-                oldFirst = oldFirst.next;
+            Node<I> prev = oldNode.prev;
+            Node<I> newNode = new Node<>(prev, item, oldNode);
+            oldNode.prev = newNode;
+            if (prev == null) {
+                first = newNode;
+            } else {
+                prev.next = newNode;
             }
-            oldFirst.next = newNode;
-            newNode.next = oldNode;
             size++;
         }
     }
     
     protected void linkLast(final I item) {
         Node<I> oldLast = last;
-        last = getNode(item);
-        if (isEmpty()) {
+        last = new Node<>(oldLast, item, null);
+        if (oldLast == null) {
             first = last;
         } else {
             oldLast.next = last;
@@ -61,11 +61,16 @@ public abstract class BaseStruct<I> implements Base<I> {
     protected I removeFirst() {
         isEmptyCheck(isEmpty());
         final I item = first.item;
-        first = first.next;
-        size--;
-        if (isEmpty()) {
+        Node<I> next = first.next;
+        first.item = null;
+        first.next = null;
+        first = next;
+        if (next == null) {
             last = null;
+        } else {
+            next.prev = null;
         }
+        size--;
         return item;
     }
     
@@ -94,13 +99,23 @@ public abstract class BaseStruct<I> implements Base<I> {
         } else if (size == index) {
             result = removeLast();
         } else {
-            Node<I> oldFirst = first;
-            Node<I> oldNode = node(index);
-            while (oldFirst.next != oldNode) {
-                oldFirst = oldFirst.next;
+            Node<I> node = node(index);
+            result = node.item;
+            Node<I> next = node.next;
+            Node<I> prev = node.prev;
+            if (prev == null) {
+                first = next;
+            } else {
+                prev.next = next;
+                node.prev = null;
             }
-            result = oldNode.item;
-            oldFirst.next = oldNode.next;
+            if (next == null) {
+                last = prev;
+            } else {
+                next.prev = prev;
+                node.next = null;
+            }
+            node.item = null;
             size--;
         }
         return result;
@@ -123,15 +138,14 @@ public abstract class BaseStruct<I> implements Base<I> {
     public I removeLast() {
         isEmptyCheck(isEmpty());
         final I item = last.item;
-        Node<I> oldFirst = first;
-        if (last == first) {
-            first = last = null;
+        Node<I> prev = last.prev;
+        last.item = null;
+        last.prev = null;
+        last = prev;
+        if (prev == null) {
+            first = null;
         } else {
-            while (last != oldFirst.next) {
-                oldFirst = oldFirst.next;
-            }
-            oldFirst.next = null;
-            last = oldFirst;
+            prev.next = null;
         }
         size--;
         return item;
@@ -154,6 +168,7 @@ public abstract class BaseStruct<I> implements Base<I> {
             Node<I> next = x.next;
             x.item = null;
             x.next = null;
+            x.prev = null;
             x = next;
         }
         first = last = null;
@@ -237,22 +252,6 @@ public abstract class BaseStruct<I> implements Base<I> {
         }
         return index;
     }
-
-    /**
-     * Reverse linked list.
-     */
-    public void reverse() {
-        Node<I> prev = first;
-        Node<I> next = prev.next;
-        prev.next = null;
-        while (next != null) {
-            Node<I> node = next.next;
-            next.next = prev;
-            prev = next;
-            next = node;
-        }
-        first = prev;
-    }
     
     /**
      * Is the struct empty.
@@ -276,23 +275,21 @@ public abstract class BaseStruct<I> implements Base<I> {
         return new LinkedIterator<>(first);
     }
     
-    private Node<I> getNode(final I item) {
-        Node<I> node;
-        node = new Node<>();
-        node.item = item;
-        node.next = null;
-        return node;
-    }
-    
     protected Node<I> node(final int index) {
-        if (index > size) {
-            throw new IndexOutOfBoundsException("Index out of range: " + index);
+        checkElementIndex(index);
+        if (index < (size >> 1)) {
+            Node<I> oldFirst = first;
+            for (int i = 0; i < index; i++) {
+                oldFirst = oldFirst.next;
+            }
+            return oldFirst;
+        } else {
+            Node<I> oldLast = last;
+            for (int i = size - 1; i > index; i--) {
+                oldLast = oldLast.prev;
+            }
+            return oldLast;
         }
-        Node<I> oldFirst = first;
-        for (int i = 0; i < index; i++) {
-            oldFirst = oldFirst.next;
-        }
-        return oldFirst;
     }
     
     private static class Node<I> {
@@ -300,6 +297,14 @@ public abstract class BaseStruct<I> implements Base<I> {
         private I item;
         
         private Node<I> next;
+        
+        private Node<I> prev;
+        
+        Node(final Node<I> prev, final I item, final Node<I> next) {
+            this.prev = prev;
+            this.item = item;
+            this.next = next;
+        }
     }
     
     private static class LinkedIterator<I> implements Iterator<I> {

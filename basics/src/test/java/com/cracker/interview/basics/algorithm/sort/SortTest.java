@@ -163,9 +163,5 @@ class SortTest {
                 linked.add(linked.remove(first));
             }
         }
-        linked.reverse();//If you want to sort from smallest to largest.
-        int[] ints = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-        int[] index = {0};
-        linked.forEach(each -> Assertions.assertEquals(ints[index[0]++], each));
     }
 }

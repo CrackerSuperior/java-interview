@@ -3,7 +3,7 @@ package com.cracker.interview.basics.algorithm.base.struct.list;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayList<I> implements List<I> {
+public class ArrayList<I> extends List<I> {
 
     private static final int DEFAULT_CAPACITY = 10;
 
@@ -79,10 +79,11 @@ public class ArrayList<I> implements List<I> {
     }
 
     @Override
-    public void set(final int index, final I item) {
+    public I set(final int index, final I item) {
         checkIndex(index);
         checkItem(item);
         items[index] = item;
+        return item;
     }
     
     private Object[] resize() {

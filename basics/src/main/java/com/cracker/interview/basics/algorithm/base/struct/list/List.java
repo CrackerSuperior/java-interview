@@ -1,18 +1,14 @@
 package com.cracker.interview.basics.algorithm.base.struct.list;
 
-import com.cracker.interview.basics.algorithm.base.core.Base;
+import com.cracker.interview.basics.algorithm.base.core.BaseStruct;
 
-public interface List<I> extends Base<I> {
+public abstract class List<I> extends BaseStruct<I> {
     
-    I get(int index);
+    public abstract I get(int index);
     
-    void add(I item);
+    public abstract void add(I item);
 
-    void add(int index, I item);
+    public abstract void add(int index, I item);
     
-    void set(int index, I item);
-    
-    I remove(int index);
-    
-    boolean contains(I item);
+    public abstract boolean contains(I item);
 }
